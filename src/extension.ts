@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { options, Option } from "./language_options";
-import { getDocPath, showDoc } from "./show_doc";
+import { showDoc } from "./show_doc";
+import { join } from "path";
 
 let helpButton: vscode.StatusBarItem;
 
@@ -19,7 +20,7 @@ export function activate({ subscriptions, extensionPath }: vscode.ExtensionConte
 				`${value} Setup`,
 				vscode.ViewColumn.Active,
 				{
-					localResourceRoots: [vscode.Uri.file(getDocPath(language, extensionPath))]
+					localResourceRoots: [vscode.Uri.file(join(extensionPath, "static"))]
 				}
 			);
 			showDoc(panel.webview, language, extensionPath);

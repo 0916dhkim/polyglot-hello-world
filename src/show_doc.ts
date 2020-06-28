@@ -9,7 +9,7 @@ import * as marked from "marked";
  * @param language Programming language.
  * @param extensionPath context.extensionPath
  */
-export function getDocPath(language: Option, extensionPath: string): string {
+function getDocPath(language: Option, extensionPath: string): string {
   const normalizedName = language.replace(/[^0-9A-Z]/i, "").toLowerCase();
   return join(
     extensionPath,
@@ -28,8 +28,10 @@ export function showDoc(webView: Webview, language: Option, extensionPath: strin
   const docPath = getDocPath(language, extensionPath);
   const readmePath = join(docPath, "README.md");
   const markdown = readFileSync(readmePath, "utf8");
-  const html = marked(markdown, {
+  const body = "<body>" + marked(markdown, {
     baseUrl: "vscode-resource:" + docPath.replace(/\\/g, "/") + "/"
-  });
-  webView.html = html;
+  }) + "</body>";
+  const styleSrc = "vscode-resource:" + join(extensionPath, "static", "style.css");
+  const head = `<head><link rel="stylesheet" href="${styleSrc}"></head>`;
+  webView.html = head + body;
 }
