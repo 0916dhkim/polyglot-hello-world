@@ -1,27 +1,35 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { options, Option } from "./language_options";
+import { getDocPath, showDoc } from "./show_doc";
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+let helpButton: vscode.StatusBarItem;
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "polyglot-hello-world" is now active!');
+// Command ID
+// Command for showing all available language guides.
+const COMMAND_ID = "polyglot-hello-world.show";
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('polyglot-hello-world.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
+export function activate({ subscriptions, extensionPath }: vscode.ExtensionContext) {
+	// register a command that is invoked when the status bar
+	// item is selected
+	subscriptions.push(vscode.commands.registerCommand(COMMAND_ID, () => {
+		vscode.window.showQuickPick([...options]).then(value => {
+			const language = value as Option;
+			const panel = vscode.window.createWebviewPanel(
+				"setup-instruction",
+				`${value} Setup`,
+				vscode.ViewColumn.Active,
+				{
+					localResourceRoots: [vscode.Uri.file(getDocPath(language, extensionPath))]
+				}
+			);
+			showDoc(panel.webview, language, extensionPath);
+		});
+	}));
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from polyglot-hello-world!');
-	});
-
-	context.subscriptions.push(disposable);
+	// create a new status bar item that we can now manage
+	helpButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+	helpButton.command = COMMAND_ID;
+	subscriptions.push(helpButton);
+	helpButton.text = `$(megaphone) Get Started`;
+	helpButton.show();
 }
-
-// this method is called when your extension is deactivated
-export function deactivate() {}
