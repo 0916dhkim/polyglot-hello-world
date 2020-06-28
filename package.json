@@ -2,7 +2,13 @@
 	"name": "polyglot-hello-world",
 	"displayName": "polyglot-hello-world",
 	"description": "Installation guide for programming languages",
-	"version": "0.0.1",
+	"publisher": "DonghyeonKim",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:0916dhkim/polyglot-hello-world.git"
+	},
+	"icon": "icon.png",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.46.0"
 	},

@@ -14,7 +14,7 @@ When a user selects a programming language, a panel will open inside
 Visual Studio Code containing installation instructions and
 a Hello World example.
 
-![screenshot](screenshots/demo.gif)
+![screenshot](https://github.com/0916dhkim/polyglot-hello-world/raw/master/screenshots/demo.gif)
 
 ## Contribution
 All documents are located under `static/<language-name>` directory.
