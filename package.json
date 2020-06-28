@@ -10,7 +10,7 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:polyglot-hello-world.helloWorld"
+		"*"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
