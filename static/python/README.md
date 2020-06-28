@@ -10,12 +10,16 @@ to download Python installation package.
 
 ![screenshot](img/official_website.png)
 
-Run the downloaded `python-3.8.3.exe` file.
+- Run the downloaded `python-3.8.3.exe` file.
 
 ![screenshot](img/setup-1.png)
 
-Click on **Install Now** button and proceed with the
+- Make sure you have "Add Python 3.8 to PATH" checkbox **checked**.
+
+- Click on **Install Now** button and proceed with the
 installation dialog.
+
+- Close the installation dialog when Python is successfully installed.
 
 # Python Extension for Visual Studio Code
 
