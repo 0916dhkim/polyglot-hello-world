@@ -17,4 +17,21 @@ Run the downloaded `python-3.8.3.exe` file.
 Click on **Install Now** button and proceed with the
 installation dialog.
 
+# Python Extension for Visual Studio Code
+
+- Open extensions tab inside visual studio code.
+- Search for `Python`.
+- Press install button for Python extension.
+
+![extension](img/extension.png)
+
 # Python Hello World!
+
+- Create a new file named `main.py`.
+- Open the created file in Visual Studio Code.
+- Write the following code in the editor.
+
+![hello](img/hello-world.png)
+
+- save the file.
+- Press `F5` key to run the hello world script.
