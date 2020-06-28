@@ -11,9 +11,13 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 	// register a command that is invoked when the status bar
 	// item is selected
 	subscriptions.push(vscode.commands.registerCommand(COMMAND_ID, () => {
-		vscode.window.showInformationMessage("Get Started Button Clicked!");
 		vscode.window.showQuickPick([...options]).then(value => {
-			vscode.window.showInformationMessage(`Get Started with ${value}`);
+			const panel = vscode.window.createWebviewPanel(
+				"setup-instruction",
+				`${value} Setup`,
+				vscode.ViewColumn.Active
+			);
+			panel.webview.html = "<h1>Hello world</h1>";
 		});
 	}));
 
