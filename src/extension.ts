@@ -1,18 +1,11 @@
 import * as vscode from 'vscode';
+import { options } from "./language_options";
 
 let helpButton: vscode.StatusBarItem;
 
 // Command ID
 // Command for showing all available language guides.
 const COMMAND_ID = "polyglot-hello-world.show";
-
-// All available languages.
-const options = [
-	"Python",
-	"Node.js",
-	"Rust"
-] as const;
-type Option = typeof options[number];
 
 export function activate({ subscriptions }: vscode.ExtensionContext) {
 	// register a command that is invoked when the status bar
